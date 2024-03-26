@@ -1,5 +1,5 @@
 from app import app, db
-from models import User, Service, Review
+from model import User, Service, Review
 
 def seed_data():
     with app.app_context():

@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_migrate import Migrate 
 from flask_cors import CORS
-from models import db, User, Service, Review 
+from model import db, User, Service, Review 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
