@@ -35,6 +35,8 @@ const AddService = ({ onAddService }) => {
       <h2 className="text-2xl font-bold mb-4">Add New Service</h2>
       <input
         type="text"
+        id="serviceName" // Add id attribute
+        name="serviceName" // Add name attribute
         placeholder="Enter service name"
         value={newServiceName}
         onChange={e => setNewServiceName(e.target.value)}
