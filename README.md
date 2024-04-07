@@ -8,24 +8,21 @@ Many individuals face challenges in locating and accessing virtual services, esp
 
 **MVP (Minimum Viable Product)**
 
-*User Registration: Users can sign up and create an account on the platform.
-*Service Listings: The platform displays listings of various local services available, such as saloons, car washes, laundry services, delivery services, etc.
-*Search Functionality: Users can search for specific services based on categories, locations, or keywords.
-*User Reviews and Ratings: Users can leave reviews and ratings for the services they have used.
-*Responsive Design: The application is responsive and accessible on different devices.
-*User Authentication: Secure authentication and authorization mechanisms are implemented for user accounts.
-*Admin Dashboard: An admin dashboard is available to manage user accounts, services, and reviews.
+•	Users can sign up for an account, log in, and log out.
+•	Users can view a list of available local services (clinics, salons, shopping malls, schools, banking services) in their area and their respective reviews.
+•	Users can create reviews for specific services.
+•	Users can modify or delete reviews they've left.
+•	Users can create listings for new services.
+•	Stretch Features:
+•	Users can view services on a map.
+•	Users can search for services based on their distance from their location.
+•	Users can filter services based on their average rating or category.
 
-**Technologies Used**
 
-*Flask: Backend framework for developing the application.
-*SQLAlchemy: ORM for database management.
-*SQLite: Database for storing application data.
-*HTML/CSS/JavaScript: Frontend technologies for the user interface.
-*Bootstrap: Frontend framework for responsive design.
-*WTForms*: Form validation and user input handling.
-*JWT Authentication: JSON Web Tokens for user authentication.
-*Git/GitHub: Version control and collaboration platform.
+**Languages Used**
+REACT JS
+Back-End Interface: Sqlalchemy-SQLITE
+
 
 **Project Structure**
 project-Local service Platform/
@@ -46,17 +43,25 @@ project-Local service Platform/
     ├── config.py
     ├── requirements.txt
     └── seed.py
-    
-**Installation and Setup**
 
+**Installation and Setup**
 1. Clone the repository.
 2. Navigate to the project directory.
 3. Install dependencies using run pipenv install && pipenv shell
+4. flask db upgrade
+5. Python app.py
+6. Seed.py
+7. npm install --prefix client
+8. Npm start
 
+**Contributors**
+This Application was a collaboration project through git respository pushes and commits.
+Collaborators Were :
+1.	Moses Kingi   (Scram Master –Leader)
+2.	Noel  Bakeloh	
+3.	Kaltuma Abdi	
+4 . Riro   Chacha 
 
-
-**Contributing**
-Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
 **License**
-This project is licensed under the MIT License.
+This project is licensed with MIT .
