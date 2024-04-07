@@ -27,6 +27,26 @@ Many individuals face challenges in locating and accessing virtual services, esp
 *JWT Authentication: JSON Web Tokens for user authentication.
 *Git/GitHub: Version control and collaboration platform.
 
+**Project Structure**
+project-Local service Platform/
+│
+├── client/
+│   ├── public/
+│   │   ├── index.html
+│   │   └── ...
+│   ├── src/
+│   │   ├── App.js
+│   │   └── ...
+│   ├── package.json
+│   └── ...
+│
+└── server/
+    ├── app.py
+    ├── models.py
+    ├── config.py
+    ├── requirements.txt
+    └── seed.py
+    
 **Installation and Setup**
 
 1. Clone the repository.
