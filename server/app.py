@@ -1,6 +1,5 @@
-from flask import Flask, request, jsonify
-from flask_migrate import Migrate 
-from flask_cors import CORS
+from flask import Flask, jsonify, request
+from flask_migrate import Migrate
 from model import db, User, Service, Review 
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -8,11 +7,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key'
-CORS(app)
+
 migrate = Migrate(app, db)
 db.init_app(app)
 
-# Routes for user authentication (sign up, log in, log out)
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
@@ -31,7 +29,7 @@ def signup():
         return jsonify({'error': 'Username already exists'}), 400
 
     new_user = User(username=username)
-    new_user.set_password(password)  # Set password using the set_password method
+    new_user.set_password(password)
     db.session.add(new_user)
     db.session.commit()
 
@@ -50,15 +48,13 @@ def login():
     if not user or not user.check_password(password):
         return jsonify({'error': 'Invalid username or password'}), 401
 
-    # Here you can implement your login logic, such as setting session cookies or JWT tokens
     return jsonify({'message': 'User logged in successfully'}), 200
 
 @app.route('/logout', methods=['GET'])
 def logout():
-    # Implement user logout logic here, such as clearing session cookies or JWT tokens
+    # Implement user logout logic here
     return jsonify({'message': 'User logged out successfully'}), 200
 
-# Routes for services (GET, POST, PATCH, DELETE)
 @app.route('/services', methods=['GET'])
 def get_services():
     services = Service.query.all()
@@ -107,7 +103,6 @@ def delete_service(service_id):
     db.session.commit()
     return jsonify({'message': 'Service deleted successfully'}), 200
 
-# Routes for reviews (GET, POST, PATCH, DELETE)
 @app.route('/services/<int:service_id>/reviews', methods=['GET'])
 def get_reviews(service_id):
     service = Service.query.get(service_id)
