@@ -26,7 +26,7 @@ const Signup = ({ setUser }) => {
         window.alert(`Sign up successful. Welcome, ${userData.username}!`); // Display success message including the username
       } else {
         const errorData = await response.json();
-        setError(errorData.message);
+        setError(errorData.error || "An error occurred. Please try again later.");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -36,46 +36,45 @@ const Signup = ({ setUser }) => {
 
   return (
     <div>
-  <div className="h-screen flex justify-center items-center bg-skyblue">
-    <div className="w-4/5 md:w-2/3 lg:w-1/3 mx-auto p-8 bg-white rounded shadow-md mt-20">
-      <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="block w-full mb-2 p-2 border rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="block w-full mb-2 p-2 border rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-          className="block w-full mb-2 p-2 border rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Sign Up
-        </button>
-      </form>
+      <div className="h-screen flex justify-center items-center bg-skyblue">
+        <div className="w-4/5 md:w-2/3 lg:w-1/3 mx-auto p-8 bg-white rounded shadow-md mt-20">
+          <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="block w-full mb-2 p-2 border rounded"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="block w-full mb-2 p-2 border rounded"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              className="block w-full mb-2 p-2 border rounded"
+              required
+            />
+            <button
+              type="submit"
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
   );
 };
 
