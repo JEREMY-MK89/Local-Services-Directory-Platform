@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 const ReviewForm = ({ serviceId }) => {
   const [rating, setRating] = useState('');
   const [comment, setComment] = useState('');
+  const [userId, setUserId] = useState('');
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/services/1/reviews`, {
+      const response = await fetch(`/services/${serviceId}/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -16,6 +17,7 @@ const ReviewForm = ({ serviceId }) => {
         body: JSON.stringify({
           rating,
           comment,
+          user_id: userId // Include user_id in the request body
         }),
       });
       if (response.ok) {
@@ -23,6 +25,7 @@ const ReviewForm = ({ serviceId }) => {
         // You may want to refresh the page or update the list of reviews
         setRating('');
         setComment('');
+        setUserId('');
       } else {
         const errorData = await response.json();
         setError(errorData.error);
@@ -55,6 +58,14 @@ const ReviewForm = ({ serviceId }) => {
           className="block w-full mb-2 p-2 border rounded"
           required
         ></textarea>
+        <input
+          type="text"
+          placeholder="User ID"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+          className="block w-full mb-2 p-2 border rounded"
+          required
+        />
         <button
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
