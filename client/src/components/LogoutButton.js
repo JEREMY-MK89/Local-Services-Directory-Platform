@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LogoutButton = ({ onLogout }) => {
   const handleLogout = async () => {
@@ -20,7 +20,9 @@ const LogoutButton = ({ onLogout }) => {
   };
 
   return (
-    <button onClick={handleLogout}>Logout</button>
+    <Link to="/" onClick={handleLogout} className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+      Logout
+    </Link>
   );
 };
 

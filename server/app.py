@@ -16,13 +16,9 @@ def signup():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
-    password_confirmation = data.get('password_confirmation')
 
-    if not username or not password or not password_confirmation:
-        return jsonify({'error': 'Username, password, and password confirmation are required'}), 400
-
-    if password != password_confirmation:
-        return jsonify({'error': 'Password and password confirmation do not match'}), 400
+    if not username or not password:
+        return jsonify({'error': 'Username and password are required'}), 400
 
     existing_user = User.query.filter_by(username=username).first()
     if existing_user:
@@ -34,6 +30,7 @@ def signup():
     db.session.commit()
 
     return jsonify({'message': 'User signed up successfully'}), 200
+
 
 @app.route('/login', methods=['POST'])
 def login():

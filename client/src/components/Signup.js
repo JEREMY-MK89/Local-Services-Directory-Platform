@@ -3,11 +3,16 @@ import React, { useState } from 'react';
 const Signup = ({ setUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!username || !password) {
+      setError("Username and password are required");
+      return;
+    }
+
     try {
       const response = await fetch("/signup", {
         method: "POST",
@@ -17,13 +22,12 @@ const Signup = ({ setUser }) => {
         body: JSON.stringify({
           username,
           password,
-          password_confirmation: passwordConfirmation,
         }),
       });
       if (response.ok) {
         const userData = await response.json();
-        setUser(userData); // Call setUser with the user data
-        window.alert(`Sign up successful. Welcome, ${userData.username}!`); // Display success message including the username
+        setUser(userData);
+        window.alert(`Sign up successful. Welcome, ${userData.name}!`);
       } else {
         const errorData = await response.json();
         setError(errorData.error || "An error occurred. Please try again later.");
@@ -54,14 +58,6 @@ const Signup = ({ setUser }) => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="block w-full mb-2 p-2 border rounded"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={passwordConfirmation}
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
               className="block w-full mb-2 p-2 border rounded"
               required
             />
