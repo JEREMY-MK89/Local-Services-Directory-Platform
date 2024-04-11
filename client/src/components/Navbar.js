@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ onLogout }) => {
+const Navbar = ({ user, onLogout }) => {
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
     if (confirmLogout) {
@@ -21,11 +21,16 @@ const Navbar = ({ onLogout }) => {
             <li><Link to="/signup" className="text-white">Sign Up</Link></li>
             <li><Link to="/login" className="text-white">Login</Link></li>
             <li><Link to="/add-service" className="text-white">Add New Service</Link></li>
-            <li>
-              <button onClick={handleLogout} className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-                Logout
-              </button>
-            </li>
+            {user && ( // Conditionally render username if user is logged in
+              <li><span className="text-white">Welcome, {user.username}!</span></li>
+            )}
+            {user && ( // Conditionally render logout button if user is logged in
+              <li>
+                <button onClick={handleLogout} className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>

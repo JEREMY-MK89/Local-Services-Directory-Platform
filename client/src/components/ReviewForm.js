@@ -138,7 +138,7 @@ const ReviewForm = ({ serviceId }) => {
                 <td className="border px-4 py-2">{review.rating}</td>
                 <td className="border px-4 py-2">{review.comment}</td>
                 <td className="border px-4 py-2">{review.user_id}</td>
-                <td className="border px-4 py-2">
+                <td className="bordaer px-4 py-2">
                   <button onClick={() => handleDeleteReview(review.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
                 </td>
               </tr>

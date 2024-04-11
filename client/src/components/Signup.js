@@ -1,15 +1,19 @@
+// Signup.jsx
+
 import React, { useState } from 'react';
 
 const Signup = ({ setUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!username || !password) {
-      setError("Username and password are required");
+
+    // Check if password and confirmation match
+    if (password !== passwordConfirmation) {
+      setError('Passwords do not match');
       return;
     }
 
@@ -22,15 +26,21 @@ const Signup = ({ setUser }) => {
         body: JSON.stringify({
           username,
           password,
+          password_confirmation: passwordConfirmation,
         }),
       });
       if (response.ok) {
         const userData = await response.json();
-        setUser(userData);
-        window.alert(`Sign up successful. Welcome, ${userData.name}!`);
+        setUser(userData); // Call setUser with the user data
+        window.alert(`Sign up successful. Welcome, ${userData.username}!`); // Display success message including the username
       } else {
         const errorData = await response.json();
-        setError(errorData.error || "An error occurred. Please try again later.");
+        if (response.status === 400 && errorData.error === 'Username already exists') {
+          // Display window prompt for existing username
+          window.alert('Username already exists. Please choose a different username.');
+        } else {
+          setError(errorData.message);
+        }
       }
     } catch (error) {
       console.error("Error:", error);
@@ -58,6 +68,14 @@ const Signup = ({ setUser }) => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="block w-full mb-2 p-2 border rounded"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
               className="block w-full mb-2 p-2 border rounded"
               required
             />

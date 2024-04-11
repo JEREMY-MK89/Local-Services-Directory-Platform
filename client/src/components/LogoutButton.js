@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const LogoutButton = ({ onLogout }) => {
+  const history = useHistory();
+
   const handleLogout = async () => {
     try {
       const response = await fetch('/logout', {
@@ -10,6 +12,8 @@ const LogoutButton = ({ onLogout }) => {
       if (response.ok) {
         // Perform actions on successful logout (e.g., clear user session)
         onLogout();
+        // Redirect to the home page
+        history.push('/');
       } else {
         // Handle logout error
         console.error('Logout failed');

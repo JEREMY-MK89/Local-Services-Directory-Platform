@@ -63,7 +63,7 @@ const AddService = ({ onAddService }) => {
   };
 
   const filteredServices = services.filter(service =>
-    service.name.toLowerCase().includes(searchTerm.toLowerCase())
+    service.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (

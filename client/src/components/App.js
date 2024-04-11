@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './Navbar';
-import Home from './Home'; // Import Home component
+import Home from './Home';
 import About from './About';
 import Signup from './Signup';
 import Login from './Login';
@@ -22,9 +22,10 @@ const App = () => {
   return (
     <div>
       <Router>
-        <Navbar onLogout={handleLogout} userId={user?.id} /> {/* Pass userId to Navbar */}
+        {/* Pass user state and logout function to Navbar */}
+        <Navbar user={user} onLogout={handleLogout} />
         <Switch>
-          <Route exact path="/" component={Home} /> {/* Render Home component */}
+          <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/signup" render={(props) => <Signup {...props} setUser={setUser} />} />
           <Route path="/login" render={(props) => <Login {...props} setUser={setUser} />} />

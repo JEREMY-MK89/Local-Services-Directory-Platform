@@ -1,5 +1,5 @@
 {
-  "name": "Local-Services-Directory-Platform/client",
+  "name": "Local-Service-Directory-Platform-/client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",
@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "tailwindcss": "^3.4.3"
   }
 }
